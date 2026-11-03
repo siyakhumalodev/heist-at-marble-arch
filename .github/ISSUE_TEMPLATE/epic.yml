@@ -1,0 +1,27 @@
+name: "🧭 Epic"
+description: "A heist epic that groups stories (add stories as sub-issues)"
+title: "Epic: "
+labels: ["epic"]
+body:
+  - type: dropdown
+    id: quest
+    attributes:
+      label: Quest
+      options:
+        - "Quest 1: Case the joint (plan)"
+        - "Quest 2: Build the vault (build and deploy)"
+        - "Quest 3: The heist (test)"
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What does this epic achieve? Cite the PRD IDs it traces to (BG-, FR-, NFR-).
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: Acceptance criteria (AC- IDs) and the evidence you'll show the host.

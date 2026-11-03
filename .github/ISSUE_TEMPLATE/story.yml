@@ -1,0 +1,23 @@
+name: "🧩 Story"
+description: "A small, testable slice of an epic"
+labels: ["story"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: One or two sentences. Cite the FR- or NFR- IDs.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: AC- IDs, or a checklist the crew can verify in under a minute.
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent epic
+      description: "Issue number, for example #5 (then add this story as a sub-issue)"

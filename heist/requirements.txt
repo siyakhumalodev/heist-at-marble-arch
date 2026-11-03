@@ -1,0 +1,6 @@
+# Heist Crew (Copilot SDK) and leak eval
+github-copilot-sdk
+pydantic>=2.11
+# Only needed for --target foundry (deployed hosted agent)
+azure-ai-projects>=2.3.0
+azure-identity

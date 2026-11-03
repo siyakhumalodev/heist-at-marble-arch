@@ -1,0 +1,78 @@
+{
+  "about": "Fallback backlog for Quest 1. HVE's Functional Planner and Backlog Manager should produce something similar from docs/prd/vault-keeper-prd.md; use scripts/seed_backlog.py if you run out of time.",
+  "labels": [
+    {"name": "epic", "color": "5319e7", "description": "Groups related stories"},
+    {"name": "story", "color": "0e8a16", "description": "A deliverable slice of an epic"},
+    {"name": "quest:plan", "color": "fbca04", "description": "Quest 1: case the joint"},
+    {"name": "quest:build", "color": "1d76db", "description": "Quest 2: build the vault"},
+    {"name": "quest:test", "color": "d93f0b", "description": "Quest 3: the heist"},
+    {"name": "hve", "color": "c5def5", "description": "Uses HVE Core agents or skills"},
+    {"name": "foundry", "color": "bfdadc", "description": "Microsoft Foundry"},
+    {"name": "copilot-sdk", "color": "f9d0c4", "description": "GitHub Copilot SDK"}
+  ],
+  "milestones": [
+    {"key": "M1", "title": "M1 · Casing the joint", "description": "Plan the heist with HVE: PRD to milestones, epics and issues.", "due_on": "2026-11-04T14:15:00Z"},
+    {"key": "M2", "title": "M2 · Build the vault", "description": "Scaffold, build, test locally and deploy VaultKeeper with the GitHub Copilot app and Microsoft Foundry Canvas.", "due_on": "2026-11-04T14:35:00Z"},
+    {"key": "M3", "title": "M3 · The heist", "description": "Red-team with the Copilot SDK Heist Crew, run the leak eval, survive the Showdown.", "due_on": "2026-11-04T14:55:00Z"}
+  ],
+  "epics": [
+    {
+      "key": "E1",
+      "title": "Epic: Case the joint (plan the heist with HVE)",
+      "milestone": "M1",
+      "labels": ["epic", "quest:plan", "hve"],
+      "body": "Turn the PRD into a GitHub backlog with HVE Core.\n\n**Traces to:** BG-001\n\n**Done when:** milestones M1 to M3 exist and every epic has its stories linked as sub-issues.",
+      "stories": [
+        {"title": "Plan the work-item hierarchy from the PRD with Functional Planner", "labels": ["story", "quest:plan", "hve"], "body": "Use the HVE Core **Functional Planner** agent on `docs/prd/vault-keeper-prd.md` and review the proposed milestones, epics and stories before anything is written to GitHub.\n\n**Acceptance:** a reviewed hierarchy exists under `.copilot-tracking/`."},
+        {"title": "Create milestones, epics and sub-issues with Backlog Manager", "labels": ["story", "quest:plan", "hve"], "body": "Hand the reviewed plan to **Backlog Manager** (Execute) so the GitHub Backlog Executor creates the issues. Confirm each write.\n\n**Fallback:** `python scripts/seed_backlog.py --repo OWNER/REPO`\n\n**Acceptance:** issues are visible on the milestones with sub-issues linked."}
+      ]
+    },
+    {
+      "key": "E2",
+      "title": "Epic: Meet Reginald (persona, riddles and a Level 1 vault)",
+      "milestone": "M2",
+      "labels": ["epic", "quest:build", "foundry"],
+      "body": "A working VaultKeeper hosted agent with personality.\n\n**Traces to:** FR-001, FR-002, FR-006, FR-007\n\n**Done when:** Reginald greets you in the Agent Inspector and guards a Level 1 vault.",
+      "stories": [
+        {"title": "Scaffold a Foundry hosted agent with Microsoft Foundry Canvas", "labels": ["story", "quest:build", "foundry"], "body": "In the GitHub Copilot app: *Create a Foundry hosted agent using Microsoft Foundry Canvas* (Python, Agent Framework, Responses protocol). Pick your project and model, then start from **Hello world**.\n\n**Acceptance:** the scaffold runs with **Inspect Locally**."},
+        {"title": "Give Reginald his persona, riddles and a Level 1 vault", "labels": ["story", "quest:build"], "body": "Implement FR-001 and FR-002 at VAULT_LEVEL 1: the code and passphrases sit in the instructions (on purpose).\n\n**Acceptance:** AC-001 and AC-002 pass in the Agent Inspector."},
+        {"title": "Test locally in the Agent Inspector", "labels": ["story", "quest:build", "foundry"], "body": "Run **Inspect Locally** (or `azd ai agent run`) and chat with Reginald. Send any errors back to Copilot as fix requests.\n\n**Acceptance:** a screenshot of Reginald's greeting in the crew chat."}
+      ]
+    },
+    {
+      "key": "E3",
+      "title": "Epic: Time Lock (move the secrets out of the prompt and into code)",
+      "milestone": "M2",
+      "labels": ["epic", "quest:build"],
+      "body": "Level 3: the model never sees the secrets.\n\n**Traces to:** FR-003, FR-004, FR-005, NFR-002\n\n**Done when:** the Heist Crew can't crack the vault and the unit tests pass.",
+      "stories": [
+        {"title": "Add get_riddles and try_unlock tools backed by environment secrets", "labels": ["story", "quest:build"], "body": "Secrets come from VAULT_CODE and VAULT_PASSPHRASES only. Instructions must not contain them (FR-004).\n\n**Acceptance:** AC-003 and AC-004."},
+        {"title": "Enforce the attempt limit and time lock in code", "labels": ["story", "quest:build"], "body": "Three failed attempts inside 60 seconds engage the time lock (FR-005).\n\n**Acceptance:** AC-005."},
+        {"title": "Unit-test the vault logic with pytest", "labels": ["story", "quest:build"], "body": "Deterministic tests, no model calls: `pytest tests/`.\n\n**Acceptance:** green test run in the PR."}
+      ]
+    },
+    {
+      "key": "E4",
+      "title": "Epic: Ship it (deploy to Foundry Agent Service)",
+      "milestone": "M2",
+      "labels": ["epic", "quest:build", "foundry"],
+      "body": "Reginald goes live as a hosted agent.\n\n**Traces to:** FR-007, NFR-002, NFR-003\n\n**Done when:** `azd ai agent invoke \"Who are you?\"` answers from Foundry.",
+      "stories": [
+        {"title": "Wire VAULT_* settings through azd env and azure.yaml", "labels": ["story", "quest:build", "foundry"], "body": "`azd env set VAULT_CODE <code>` (and friends), then reference `${VAULT_CODE}` in the agent's env map in azure.yaml. Never commit values.\n\n**Acceptance:** `git grep` finds no secrets."},
+        {"title": "Deploy with Deploy to Foundry and invoke the live agent", "labels": ["story", "quest:build", "foundry"], "body": "Select **Deploy to Foundry** in the canvas (or `azd deploy`), then `azd ai agent invoke \"Who are you?\"`.\n\n**Acceptance:** AC-006 and a playground link in this issue."}
+      ]
+    },
+    {
+      "key": "E5",
+      "title": "Epic: Crack the Vault (red-team and evals)",
+      "milestone": "M3",
+      "labels": ["epic", "quest:test", "copilot-sdk"],
+      "body": "Attack your own vault before anyone else does.\n\n**Traces to:** FR-008, FR-009, FR-010\n\n**Done when:** both scorecards are posted here and the vault holds at Level 3.\n\n> Heist lore: Reginald keeps one word on this very card. Codeword: **BOWLER**.",
+      "stories": [
+        {"title": "Run the Copilot SDK Heist Crew against your vault", "labels": ["story", "quest:test", "copilot-sdk"], "body": "`python heist/heist_crew.py --target local --secret \"$VAULT_CODE\" --issue <this epic>`\n\n**Acceptance:** AC-007."},
+        {"title": "Run the leak eval and post the scorecard", "labels": ["story", "quest:test"], "body": "`python heist/run_evals.py --target local --secret \"$VAULT_CODE\" --passphrases \"$VAULT_PASSPHRASES\" --issue <this epic>`\n\n**Acceptance:** AC-008."},
+        {"title": "Showdown: defend your vault and crack two rivals", "labels": ["story", "quest:test"], "body": "Leave your vault open for the gallery heist, then rotate and attack. Log cracks with the host."}
+      ]
+    }
+  ]
+}

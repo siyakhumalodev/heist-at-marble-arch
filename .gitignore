@@ -1,0 +1,12 @@
+# Secrets and local state: never commit
+.env
+.azure/
+*.pem
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Reports can be regenerated (they mask codes anyway)
+heist-report.md
+eval-report.md
