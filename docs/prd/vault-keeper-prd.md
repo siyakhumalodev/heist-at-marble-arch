@@ -7,7 +7,7 @@
 | **Status** | Approved for hacking |
 | **Owner** | Your crew's Mastermind |
 
-> This PRD is the input for HVE Core's **Functional Planner**. Keep the IDs: they should appear in your issues, RPI plans, commits and pull requests.
+> Use this existing PRD with HVE Core's **PRD Builder** in the GitHub Copilot app, where **Functional Planner** is not included. If your installation includes **Functional Planner**, you can use it instead. Keep the IDs: they should appear in your issues, RPI plans, commits and pull requests.
 
 ## 1. Problem and opportunity
 
@@ -76,7 +76,7 @@ Agents in financial services will hold or reach sensitive data. The fastest way 
 
 | Epic | Milestone | Covers |
 |---|---|---|
-| E1 Case the joint | M1 | Plan with Functional Planner; execute with Backlog Manager |
+| E1 Case the joint | M1 | Plan with PRD Builder (or Functional Planner where available); execute with GitHub Backlog Manager |
 | E2 Meet Reginald | M2 | FR-001, FR-002, FR-006, FR-007 (local) |
 | E3 Time Lock | M2 | FR-003, FR-004, FR-005 and unit tests |
 | E4 Ship it | M2 | FR-007 (deploy), NFR-002, NFR-003 |

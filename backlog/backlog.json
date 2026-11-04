@@ -1,5 +1,5 @@
 {
-  "about": "Fallback backlog for Quest 1. HVE's Functional Planner and Backlog Manager should produce something similar from docs/prd/vault-keeper-prd.md; use scripts/seed_backlog.py if you run out of time.",
+  "about": "Fallback backlog for Quest 1. HVE's PRD Builder (or Functional Planner where available) and GitHub Backlog Manager should produce something similar from docs/prd/vault-keeper-prd.md; use scripts/seed_backlog.py if you run out of time.",
   "labels": [
     {"name": "epic", "color": "5319e7", "description": "Groups related stories"},
     {"name": "story", "color": "0e8a16", "description": "A deliverable slice of an epic"},
@@ -23,8 +23,8 @@
       "labels": ["epic", "quest:plan", "hve"],
       "body": "Turn the PRD into a GitHub backlog with HVE Core.\n\n**Traces to:** BG-001\n\n**Done when:** milestones M1 to M3 exist and every epic has its stories linked as sub-issues.",
       "stories": [
-        {"title": "Plan the work-item hierarchy from the PRD with Functional Planner", "labels": ["story", "quest:plan", "hve"], "body": "Use the HVE Core **Functional Planner** agent on `docs/prd/vault-keeper-prd.md` and review the proposed milestones, epics and stories before anything is written to GitHub.\n\n**Acceptance:** a reviewed hierarchy exists under `.copilot-tracking/`."},
-        {"title": "Create milestones, epics and sub-issues with Backlog Manager", "labels": ["story", "quest:plan", "hve"], "body": "Hand the reviewed plan to **Backlog Manager** (Execute) so the GitHub Backlog Executor creates the issues. Confirm each write.\n\n**Fallback:** `python scripts/seed_backlog.py --repo OWNER/REPO`\n\n**Acceptance:** issues are visible on the milestones with sub-issues linked."}
+        {"title": "Plan the work-item hierarchy from the PRD with PRD Builder", "labels": ["story", "quest:plan", "hve"], "body": "Use the HVE Core **PRD Builder** agent on `docs/prd/vault-keeper-prd.md` and review the proposed milestones, epics and stories before anything is written to GitHub. If your installation includes **Functional Planner**, you can use it instead.\n\n**Acceptance:** a reviewed hierarchy exists under `.copilot-tracking/`."},
+        {"title": "Create milestones, epics and sub-issues with GitHub Backlog Manager", "labels": ["story", "quest:plan", "hve"], "body": "Hand the reviewed plan to **GitHub Backlog Manager** (Execute) so the GitHub Backlog Executor creates the issues. Confirm each write.\n\n**Fallback:** `python scripts/seed_backlog.py --repo OWNER/REPO`\n\n**Acceptance:** issues are visible on the milestones with sub-issues linked."}
       ]
     },
     {

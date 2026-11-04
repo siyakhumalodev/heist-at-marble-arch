@@ -5,7 +5,7 @@
 
 | Stage | You'll use | Outcome |
 |---|---|---|
-| 🗺️ **Plan** | **HVE Core**: Functional Planner + Backlog Manager | GitHub **milestones, epics and issues** (sub-issues) from a PRD |
+| 🗺️ **Plan** | **HVE Core**: PRD Builder (or Functional Planner where available) + GitHub Backlog Manager | GitHub **milestones, epics and issues** (sub-issues) from a PRD |
 | 🔧 **Build** | **GitHub Copilot app** + **Microsoft Foundry Canvas** + HVE **RPI** | A hosted agent running locally in the Agent Inspector |
 | 🚀 **Deploy** | Foundry Canvas **Deploy to Foundry** (`azd deploy`) | Reginald live in **Foundry Agent Service** |
 | 🕵️ **Test** | **GitHub Copilot SDK** "Heist Crew" + deterministic leak eval | A red-team scorecard on your GitHub epic |
@@ -39,7 +39,9 @@ FSI SE Q2 Team Day · Wednesday 4 November 2026 · 14:00 to 15:00 · 5 Marble Ar
    - macOS: `brew install --cask microsoft/foundry/devpack && foundry-devpack install`
    - Linux: `curl -fsSL https://aka.ms/foundry-devpack-install.sh | bash`
    - Check the app: **Settings → Plugins** (or **Customize → Plugins**) shows **microsoft-foundry**. If not, search for it and select **Install**.
-3. **HVE Core** plugin (agents and skills):
+3. **HVE Core** plugin (agents and skills): in the GitHub Copilot app, open the **Customize** window, search for **HVE Core**, and install **hve-core-all**, which contains all the agents.
+
+   Copilot CLI alternative:
    ```bash
    copilot plugin marketplace add microsoft/hve-core
    copilot plugin install hve-core@hve-core
@@ -53,10 +55,10 @@ FSI SE Q2 Team Day · Wednesday 4 November 2026 · 14:00 to 15:00 · 5 Marble Ar
 
 ## 🗺️ Quest 1: Case the joint (plan with HVE → GitHub)
 
-1. **Mastermind**: create your crew repo from this template (**Use this template** → private repo) and open it in the GitHub Copilot app.
-2. Select the **Functional Planner** agent and prompt:
+1. **Mastermind**: create your crew repo from this template (`github.com/siyakhumalodev/heist-at-marble-arch`, then **Use this template** → private repo) and open it in the GitHub Copilot app.
+2. Select the **PRD Builder** agent and use the prompt below with the existing PRD. The HVE Core version in the GitHub Copilot app does not include **Functional Planner**; use **PRD Builder** instead. If your installation includes **Functional Planner**, you can use it for this step.
    > Plan a GitHub work-item hierarchy for `docs/prd/vault-keeper-prd.md` in repo `OWNER/REPO`. Use the PRD's three milestones (M1 Casing the joint, M2 Build the vault, M3 The heist), epics as parent issues and stories as sub-issues. Keep the FR and AC IDs in every issue body. Plan only: don't write to GitHub yet.
-3. Review the proposed hierarchy (it's saved under `.copilot-tracking/`). Then switch to **Backlog Manager** → **Execute**:
+3. Review the proposed hierarchy (it's saved under `.copilot-tracking/`). Then switch to **GitHub Backlog Manager** → **Execute**:
    > Execute the reviewed GitHub handoff for `OWNER/REPO`: create the milestones, epics and stories and link stories as sub-issues. Use partial autonomy and confirm each batch with me.
 4. Check **Issues → Milestones** in GitHub.
 
@@ -126,7 +128,7 @@ Run the crew at **Level 1** first, watch it crack, then switch to **Level 3** an
 .github/instructions/                path-specific security rules for *.py
 .github/skills/heist-red-team/       /heist-red-team skill
 .github/ISSUE_TEMPLATE/              Epic and Story issue forms
-docs/prd/vault-keeper-prd.md         the PRD: input to HVE's Functional Planner
+docs/prd/vault-keeper-prd.md         the PRD: input to HVE's PRD Builder (or Functional Planner)
 docs/game-rules.md                   rules and scoring
 backlog/backlog.json                 fallback backlog (milestones, epics, stories)
 scripts/seed_backlog.py              creates that backlog with gh (Quest 1 fallback)
